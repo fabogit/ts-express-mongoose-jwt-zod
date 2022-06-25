@@ -1,0 +1,1 @@
+// on getUserSessionHandler -> validate that user exist (res.locals.user)
