@@ -1,1 +1,15 @@
-// on getUserSessionHandler -> validate that user exist (res.locals.user)
+import { Request, Response, NextFunction } from 'express';
+
+const requireUser = (req: Request, res: Response, next: NextFunction) => {
+	// on getUserSessionHandler -> validate that user exist (res.locals.user)
+	const user = res.locals.user;
+
+	if (!user) {
+		return res.sendStatus(403);
+	}
+
+	// user token was valid and deserializeUser stored user on res.locals
+	return next();
+};
+
+export default requireUser;
