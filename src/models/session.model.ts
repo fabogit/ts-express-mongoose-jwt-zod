@@ -22,7 +22,7 @@ const sessionSchema = new mongoose.Schema({
 	userAgent: {
 		type: String
 	}
-},{
+}, {
 	timestamps: true
 });
 
