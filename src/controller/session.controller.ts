@@ -37,7 +37,7 @@ export async function getUserSessionsHandler(req: Request, res: Response) {
 	// fetch user from deserializeUser() -> res.locals
 	const userId = res.locals.user._id;
 	// get only valid sessions
-	const sessions = await findSessions({ user: userId, valid: false });
+	const sessions = await findSessions({ user: userId, valid: true });
 
 	return response.send(sessions);
 }
