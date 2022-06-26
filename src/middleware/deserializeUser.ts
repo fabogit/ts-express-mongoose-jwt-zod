@@ -8,14 +8,14 @@ import { verifyJwt } from '../utils/jwt.utils';
 const deserializeUser = async (req: Request, res: Response, next: NextFunction) => {
 	// get Tokens from request headers
 	// remove "Bearer ..."" from token
-	const accesToken = get(req, 'headers.authorization', '').replace(/^Bearer\s/, '');
+	const accessToken = get(req, 'headers.authorization', '').replace(/^Bearer\s/, '');
 	const refreshToken = get(req, 'headers.x-refresh');
 
-	if (!accesToken) {
+	if (!accessToken) {
 		return next();
 	}
 	// decode token
-	const { decoded, expired } = verifyJwt(accesToken);
+	const { decoded, expired } = verifyJwt(accessToken);
 	console.log('decoded', decoded);
 
 	if (decoded) {

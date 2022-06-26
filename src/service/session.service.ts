@@ -23,9 +23,9 @@ export async function reissueAccessToken(refreshToken: string) {
 
 	const { decoded } = verifyJwt(refreshToken);
 
-	if (!decoded || !get(decoded, '_id')) return false;
+	if (!decoded || !get(decoded, 'session')) return false;
 
-	const session = await SessionModel.findById(get(decoded, '_id'));
+	const session = await SessionModel.findById(get(decoded, 'session'));
 
 	if (!session || !session.valid) return false;
 
@@ -34,10 +34,10 @@ export async function reissueAccessToken(refreshToken: string) {
 	if (!user) return false;
 
 	// create access token
-	const accesToken = signJwt(
+	const accessToken = signJwt(
 		{ ...user, session: session._id },
 		// 15min
-		{ expiresIn: config.get('accesTokenTtl') }
+		{ expiresIn: config.get('accessTokenTtl') }
 	);
-	return accesToken;
+	return accessToken;
 }
