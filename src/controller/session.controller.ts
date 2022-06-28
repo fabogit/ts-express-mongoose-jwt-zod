@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Request, Response } from 'express';
 
 import config from 'config';
@@ -15,6 +16,8 @@ export async function createUserSessionHandler(req: Request, res: Response) {
 		return res.status(401).send('Invalid email or password');
 	}
 =======
+=======
+>>>>>>> main
 import { Request, response, Response } from 'express';
 
 import config from 'config';
@@ -32,11 +35,15 @@ export async function createUserSessionHandler(req: Request, res: Response) {
 		return res.status(401).send('Invalid email or password ');
 	}
 
+<<<<<<< HEAD
 >>>>>>> session
+=======
+>>>>>>> main
 	// create session
 	const session = await createSession(user._id, req.get('user-agent') || '');
 	// create access token
 	const accessToken = signJwt(
+<<<<<<< HEAD
 <<<<<<< HEAD
 		{...user, session: session._id},
 		{expiresIn: config.get('accessTokenTtl')});
@@ -48,6 +55,8 @@ export async function createUserSessionHandler(req: Request, res: Response) {
 
 	return res.send({ accessToken, refreshToken});
 =======
+=======
+>>>>>>> main
 		{ ...user, session: session._id },
 		// 15min
 		{ expiresIn: config.get('accessTokenTtl') }
@@ -82,5 +91,8 @@ export async function deleteSessionHandler(req: Request, res: Response) {
 		accessToken: null,
 		refreshToken: null
 	});
+<<<<<<< HEAD
 >>>>>>> session
+=======
+>>>>>>> main
 }
