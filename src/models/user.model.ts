@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	}
-},{
+}, {
 	timestamps: true
 });
 
@@ -37,10 +37,10 @@ const userSchema = new mongoose.Schema({
 // }
 
 // pre hook to update and hash password
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
 	// alias for this
 	const user = this as UserDocument;
-	if(!user.isModified('password')){
+	if (!user.isModified('password')) {
 		return next();
 	}
 
@@ -50,7 +50,7 @@ userSchema.pre('save', async function(next) {
 	return next();
 });
 
-userSchema.methods.comparePassword = async function(inputPassword: string): Promise<boolean> {
+userSchema.methods.comparePassword = async function (inputPassword: string): Promise<boolean> {
 	const user = this as UserDocument;
 	return await bcrypt.compare(inputPassword, user.password).catch((e) => false);
 };
