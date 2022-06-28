@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+import SessionModel from '../models/session.model';
+
+export async function createSession(userId: string, userAgent: string) {
+	const session = await SessionModel.create({ user: userId, userAgent });
+
+	return session.toJSON();
+=======
 import { get } from 'lodash';
 import { FilterQuery, UpdateQuery } from 'mongoose';
 import config from 'config';
@@ -40,4 +48,5 @@ export async function reissueAccessToken(refreshToken: string) {
 		{ expiresIn: config.get('accessTokenTtl') }
 	);
 	return accessToken;
+>>>>>>> session
 }
