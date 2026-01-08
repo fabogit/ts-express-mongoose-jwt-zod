@@ -13,7 +13,8 @@ export interface SessionDocument extends mongoose.Document {
 const sessionSchema = new mongoose.Schema({
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
+		ref: 'User',
+		index: true // ⚡ Bolt: Index for faster lookup by user
 	},
 	valid: {
 		type: Boolean,
