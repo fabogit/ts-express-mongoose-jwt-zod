@@ -45,7 +45,8 @@ userSchema.pre('save', async function (next) {
 	}
 
 	const salt = await bcrypt.genSalt(config.get('saltWorkFactor') as number);
-	const hash = bcrypt.hashSync(user.password, salt);
+	// ⚡ Bolt Optimization: Use async hash to prevent blocking the event loop
+	const hash = await bcrypt.hash(user.password, salt);
 	user.password = hash;
 	return next();
 });
